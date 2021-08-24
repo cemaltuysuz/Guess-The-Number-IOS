@@ -67,7 +67,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Router" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7g-vn-iQE">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Router" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7g-vn-iQE">
                                 <rect key="frame" x="158.5" y="300" width="97" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,7 +88,16 @@
                                 <state key="normal" title="Enter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="enterButton:" destination="uKJ-5z-gsT" eventType="touchUpInside" id="Ila-Rs-x57"/>
+                                </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter numeric type value." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsW-Up-rca">
+                                <rect key="frame" x="110.5" y="522" width="193.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining Trial : 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWU-NS-p2Y">
                                 <rect key="frame" x="137.5" y="188" width="139" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -102,19 +111,28 @@
                             <constraint firstItem="YO6-gi-pgr" firstAttribute="trailing" secondItem="g0J-1h-Lb4" secondAttribute="trailing" constant="140" id="3dh-hn-1Eu"/>
                             <constraint firstItem="g0J-1h-Lb4" firstAttribute="centerY" secondItem="DnG-B1-QPU" secondAttribute="centerY" id="ALi-IK-zFH"/>
                             <constraint firstItem="DWU-NS-p2Y" firstAttribute="top" secondItem="YO6-gi-pgr" secondAttribute="top" constant="100" id="AqX-qB-2Db"/>
+                            <constraint firstItem="KsW-Up-rca" firstAttribute="top" secondItem="g0J-1h-Lb4" secondAttribute="bottom" constant="34" id="Nb4-zH-KJX"/>
                             <constraint firstItem="m7g-vn-iQE" firstAttribute="centerX" secondItem="DnG-B1-QPU" secondAttribute="centerX" id="NcS-91-tIa"/>
                             <constraint firstItem="DWU-NS-p2Y" firstAttribute="centerX" secondItem="DnG-B1-QPU" secondAttribute="centerX" id="b8v-PE-O44"/>
                             <constraint firstItem="m7g-vn-iQE" firstAttribute="top" secondItem="DWU-NS-p2Y" secondAttribute="bottom" constant="91" id="bqY-LC-sw1"/>
+                            <constraint firstItem="KsW-Up-rca" firstAttribute="centerX" secondItem="DnG-B1-QPU" secondAttribute="centerX" id="e54-0K-SJg"/>
                             <constraint firstItem="ycr-9h-LTL" firstAttribute="centerX" secondItem="DnG-B1-QPU" secondAttribute="centerX" id="ihA-NM-H02"/>
                             <constraint firstItem="g0J-1h-Lb4" firstAttribute="leading" secondItem="YO6-gi-pgr" secondAttribute="leading" constant="140" id="tIK-Z2-Gam"/>
                             <constraint firstItem="ycr-9h-LTL" firstAttribute="top" secondItem="g0J-1h-Lb4" secondAttribute="bottom" constant="107" id="uu5-me-3VW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Guess Screen" id="0ND-ss-HBI"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="KsW-Up-rca" id="uyx-tF-Elh"/>
+                        <outlet property="inputNum" destination="g0J-1h-Lb4" id="I7G-OC-DND"/>
+                        <outlet property="remainingTrial" destination="DWU-NS-p2Y" id="GcH-rd-0i4"/>
+                        <outlet property="router" destination="m7g-vn-iQE" id="jl7-1r-ja0"/>
+                        <segue destination="eRA-Zx-tEj" kind="show" identifier="guessToResult" id="K36-UA-obo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTk-nS-h7a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1657.9710144927537" y="93.75"/>
+            <point key="canvasLocation" x="1696" y="94"/>
         </scene>
         <!--Result ScreenVT-->
         <scene sceneID="6v0-ug-wgt">
@@ -125,29 +143,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Win" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlF-TE-vAu">
-                                <rect key="frame" x="181.5" y="144" width="51" height="36"/>
+                                <rect key="frame" x="181.5" y="188" width="51" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Happy Face" translatesAutoresizingMaskIntoConstraints="NO" id="aVd-S0-qTm">
-                                <rect key="frame" x="87" y="250" width="240" height="128"/>
+                                <rect key="frame" x="87" y="294" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="2ON-1s-A1z"/>
                                     <constraint firstAttribute="height" constant="128" id="tGr-K2-UMx"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number is : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wax-cO-LOm">
-                                <rect key="frame" x="136" y="478" width="142" height="33.5"/>
+                                <rect key="frame" x="136" y="522" width="142" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lF8-ew-dNS">
-                                <rect key="frame" x="175" y="656.5" width="64" height="46"/>
+                                <rect key="frame" x="176.5" y="700.5" width="61" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Retry"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="retryGame:" destination="eRA-Zx-tEj" eventType="touchUpInside" id="W8d-4F-vWm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DeV-FG-37f"/>
@@ -163,10 +184,16 @@
                             <constraint firstItem="Wax-cO-LOm" firstAttribute="centerX" secondItem="pgV-ZJ-LSV" secondAttribute="centerX" id="ydq-PV-IPQ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Aba-B0-Xwi"/>
+                    <connections>
+                        <outlet property="case" destination="AlF-TE-vAu" id="4dz-Pq-RM0"/>
+                        <outlet property="caseImage" destination="aVd-S0-qTm" id="Woo-9O-AkX"/>
+                        <outlet property="num" destination="Wax-cO-LOm" id="SzI-PV-Wvq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XtV-FL-c0h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360.8695652173915" y="93.75"/>
+            <point key="canvasLocation" x="2468" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dF9-Zi-TzW">
@@ -192,6 +219,9 @@
         <image name="Happy Face" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
